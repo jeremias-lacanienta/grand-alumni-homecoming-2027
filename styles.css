@@ -227,14 +227,16 @@ img { max-width: 100%; display: block; }
   animation: fadeUp 1.4s 1.5s forwards;
 }
 .flipdown {
-  display: inline-block !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
   margin: 0 auto !important;
-  width: max-content !important;
+  width: auto !important;
   max-width: none !important;
   height: auto !important;
   transform: none !important;
 }
-.flipdown .rotor-group { float: left !important; }
+.flipdown .rotor-group { float: none !important; }
 .flipdown .rotor-group-heading::before {
   font-family: var(--sans) !important;
   font-weight: 600 !important;
