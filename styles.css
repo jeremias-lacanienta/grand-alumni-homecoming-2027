@@ -579,7 +579,10 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- FINALE (poster image) ---------- */
-.finale,
+.finale {
+  display: block;
+  width: 100%;
+}
 .finale img {
   display: block;
   width: 100%;
@@ -722,6 +725,16 @@ img { max-width: 100%; display: block; }
   .year-tag { font-size: 1rem; }
   .year-tag.celebrant { font-size: 1.6rem; }
 
+  /* Force finale image to fill viewport height on desktop */
+  .finale {
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .finale img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 /* ---------- A11y / motion ---------- */
