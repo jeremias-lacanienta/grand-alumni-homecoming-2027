@@ -216,37 +216,22 @@ img { max-width: 100%; display: block; }
   padding: 0 0.5rem;
 }
 
-.countdown {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* FlipDown override — center, responsive scale, match palette */
+.flipdown {
+  display: flex !important;
   justify-content: center;
-  gap: 0.5rem;
   margin: 0 auto 1.5rem;
-  max-width: 360px;
   opacity: 0;
   animation: fadeUp 1.4s 1.5s forwards;
+  transform-origin: center top;
+  transform: scale(0.62);
+  height: auto;
 }
-.cd-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.cd-num {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: 2rem;
-  color: var(--maroon-deep);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-.cd-lbl {
-  font-family: var(--sans);
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 0.5rem;
-  font-weight: 600;
+.flipdown .rotor-group-heading::before {
+  font-family: var(--sans) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  color: var(--maroon) !important;
 }
 
 .hero-date {
@@ -853,9 +838,7 @@ img { max-width: 100%; display: block; }
   .hero-rule { width: 70px; margin: 1.25rem auto; }
   @keyframes widen { from { opacity:0; width:0; } to { opacity:1; width:70px; } }
   .hero-event { font-size: 1.2rem; margin-bottom: 2.5rem; }
-  .countdown { gap: 2rem; max-width: 600px; }
-  .cd-num { font-size: 3.2rem; }
-  .cd-lbl { font-size: 0.62rem; letter-spacing: 0.35em; }
+  .flipdown { transform: scale(0.85); }
   .hero-date { font-size: 1.1rem; letter-spacing: 0.15em; }
   .scroll-hint { bottom: 2rem; }
   .scroll-line { height: 40px; }
@@ -950,9 +933,7 @@ img { max-width: 100%; display: block; }
   .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.5em; }
   .hero-title { font-size: 5.5rem; }
   .hero-event { font-size: 1.4rem; }
-  .countdown { gap: 3rem; }
-  .cd-num { font-size: 4rem; }
-  .cd-lbl { font-size: 0.65rem; letter-spacing: 0.4em; }
+  .flipdown { transform: scale(1); }
   .hero-date { font-size: 1.25rem; }
 
   .bridge-text { font-size: 3.2rem; }

@@ -23,27 +23,15 @@ const BATCHES = [
   { year: 2012, gem: "Crystal",     anniversary: "fifteen years",glow: "rgba(180,220,240,0.6)",  color: "#B8DCEC" },
 ];
 
-// ============ COUNTDOWN ============
-const target = new Date("2027-01-31T09:00:00+08:00").getTime();
+// ============ COUNTDOWN (FlipDown) ============
+const targetEpoch = Math.floor(new Date("2027-01-31T09:00:00+08:00").getTime() / 1000);
 
 function pad(n, len = 2) { return String(n).padStart(len, "0"); }
 
-function tick() {
-  const now = Date.now();
-  const diff = Math.max(0, target - now);
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  const els = document.querySelectorAll("[data-unit]");
-  els.forEach(el => {
-    const u = el.dataset.unit;
-    const v = u === "d" ? pad(d, 3) : u === "h" ? pad(h) : u === "m" ? pad(m) : pad(s);
-    if (el.textContent !== v) el.textContent = v;
-  });
-}
-tick();
-setInterval(tick, 1000);
+new FlipDown(targetEpoch, "flipdown", {
+  theme: "dark",
+  headings: ["Days", "Hours", "Minutes", "Seconds"],
+}).start();
 
 // ============ GEM SVGS ============
 // Each returns inline SVG markup tinted with the batch's color.
