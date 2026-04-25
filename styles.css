@@ -216,16 +216,26 @@ img { max-width: 100%; display: block; }
   padding: 0 0.5rem;
 }
 
-/* FlipDown override — center, responsive scale, match palette */
-.flipdown {
-  display: flex !important;
+/* FlipDown override — keep horizontal, scale to fit, match palette.
+   transform: scale() keeps the natural bounding box, so the slot
+   wrapper compensates with a fixed visual height to remove the
+   empty space the scaled-down rotors leave below. */
+.flipdown-slot {
+  display: flex;
   justify-content: center;
-  margin: 0 auto 1.5rem;
+  align-items: flex-start;
+  margin: 0 auto 1.25rem;
+  height: 70px;        /* visual height after scale 0.45 */
+  overflow: visible;
   opacity: 0;
   animation: fadeUp 1.4s 1.5s forwards;
-  transform-origin: center top;
-  transform: scale(0.62);
+}
+.flipdown {
+  width: max-content !important;
   height: auto;
+  margin: 0;
+  transform-origin: top center;
+  transform: scale(0.45);
 }
 .flipdown .rotor-group-heading::before {
   font-family: var(--sans) !important;
@@ -838,7 +848,8 @@ img { max-width: 100%; display: block; }
   .hero-rule { width: 70px; margin: 1.25rem auto; }
   @keyframes widen { from { opacity:0; width:0; } to { opacity:1; width:70px; } }
   .hero-event { font-size: 1.2rem; margin-bottom: 2.5rem; }
-  .flipdown { transform: scale(0.85); }
+  .flipdown-slot { height: 110px; }
+  .flipdown { transform: scale(0.7); }
   .hero-date { font-size: 1.1rem; letter-spacing: 0.15em; }
   .scroll-hint { bottom: 2rem; }
   .scroll-line { height: 40px; }
@@ -933,6 +944,7 @@ img { max-width: 100%; display: block; }
   .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.5em; }
   .hero-title { font-size: 5.5rem; }
   .hero-event { font-size: 1.4rem; }
+  .flipdown-slot { height: 158px; }
   .flipdown { transform: scale(1); }
   .hero-date { font-size: 1.25rem; }
 
