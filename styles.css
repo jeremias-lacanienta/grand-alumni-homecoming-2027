@@ -43,37 +43,16 @@ img { max-width: 100%; display: block; }
    MOBILE FIRST  (default styles target ~360–480 phones)
    ============================================================ */
 
-/* ---------- HERO ---------- */
+/* ---------- HERO (poster image with FlipDown overlay) ---------- */
 .hero {
   position: relative;
-  min-height: var(--vh);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  display: block;
   overflow: hidden;
-  padding: 5rem 1.25rem 4rem;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 25%, rgba(232,194,106,0.5), transparent 55%),
-    radial-gradient(ellipse at 70% 80%, rgba(241,215,206,0.55), transparent 60%),
-    linear-gradient(180deg, #FAF4E6 0%, #F2E8CE 60%, #EFD7B5 100%);
-}
-.hero-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(0deg, rgba(122,31,43,0.025) 0, rgba(122,31,43,0.025) 1px, transparent 1px, transparent 3px);
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-}
-.hero-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(232,194,106,0.35) 100%);
-  pointer-events: none;
+  background: var(--cream) url("assets/hero-mobile.png") center / cover no-repeat;
+  aspect-ratio: 853 / 1844;
+  min-height: 0;
+  padding: 0;
 }
 
 /* ---------- SCHOOL SHOWCASE ---------- */
@@ -139,92 +118,39 @@ img { max-width: 100%; display: block; }
   text-shadow: 0 2px 18px rgba(74,16,24,0.6);
 }
 
+/* All textual hero content is part of the poster image — keep in DOM
+   for SEO/screen readers, but visually hidden. */
 .hero-content {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  max-width: 1100px;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
-
-.hero-logo {
-  width: 78px;
-  height: auto;
-  border-radius: 50%;
-  margin: 0 auto 1.25rem;
-  filter: drop-shadow(0 6px 20px rgba(122,31,43,0.18)) drop-shadow(0 0 28px rgba(184,134,26,0.35));
-  opacity: 0;
-  animation: fadeUp 1.4s 0.1s forwards;
-}
-
-.hero-eyebrow {
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.32em;
-  font-weight: 600;
-  color: var(--maroon);
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-  opacity: 0;
-  animation: fadeUp 1.2s 0.2s forwards;
-  padding: 0 0.5rem;
-}
-
-.hero-title {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: 2.6rem;
-  line-height: 1.02;
-  color: var(--maroon-deep);
-  margin-bottom: 1rem;
-}
-.hero-title .line {
-  display: block;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1.4s forwards;
-}
-.hero-title .line:nth-child(1) { animation-delay: 0.4s; }
-.hero-title .line:nth-child(2) { animation-delay: 0.6s; font-style: italic; color: var(--gold); font-weight: 400; }
-.hero-title .line-name {
-  font-size: 0.42em;
-  letter-spacing: 0.06em;
-  margin-top: 0.35em;
-  font-weight: 500;
-}
-
-.hero-rule {
-  width: 60px;
+.hero-logo,
+.hero-eyebrow,
+.hero-title,
+.hero-date {
+  position: absolute;
+  width: 1px;
   height: 1px;
-  background: var(--gold);
-  margin: 1rem auto;
-  opacity: 0;
-  animation: widen 1.2s 1s forwards;
-}
-@keyframes widen {
-  from { opacity: 0; width: 0; }
-  to   { opacity: 1; width: 60px; }
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.hero-event {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--maroon);
-  margin-bottom: 1.75rem;
-  opacity: 0;
-  animation: fadeUp 1.2s 1.2s forwards;
-  padding: 0 0.5rem;
-}
-
-/* FlipDown — native sizing, centered.
-   Override default 580px width so it fits the viewport on phone
-   without transforms. Larger physical card sizes than the previous
-   transform-scaled version, fully readable. */
+/* FlipDown overlay — positioned over the reserved zone in the poster. */
 .flipdown-slot {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
   text-align: center;
-  margin: 0 auto 1.5rem;
+  width: max-content;
   opacity: 0;
-  animation: fadeUp 1.4s 1.5s forwards;
+  animation: fadeIn 1.4s 0.4s forwards;
 }
 .flipdown {
   display: block !important;
@@ -276,44 +202,6 @@ img { max-width: 100%; display: block; }
 }
 .flipdown .rotor-group-heading::before { font-size: 0.55rem !important; }
 
-.hero-date {
-  font-family: var(--serif);
-  font-size: 0.95rem;
-  color: var(--maroon-deep);
-  letter-spacing: 0.12em;
-  opacity: 0;
-  animation: fadeUp 1.2s 1.8s forwards;
-}
-
-.scroll-hint {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  opacity: 0;
-  animation: fadeIn 1s 2.5s forwards;
-}
-.scroll-hint span {
-  font-size: 0.55rem;
-  letter-spacing: 0.4em;
-  color: var(--maroon);
-  text-transform: uppercase;
-}
-.scroll-line {
-  width: 1px;
-  height: 30px;
-  background: linear-gradient(180deg, var(--maroon), transparent);
-  animation: scrollPulse 2s infinite;
-}
-
-@keyframes scrollPulse {
-  0%, 100% { transform: scaleY(1); opacity: 1; }
-  50%      { transform: scaleY(0.6); opacity: 0.4; }
-}
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { to { opacity: 1; } }
 
@@ -873,39 +761,6 @@ img { max-width: 100%; display: block; }
    TABLET  (>= 760px)
    ============================================================ */
 @media (min-width: 760px) {
-  .hero { padding: 4rem 2rem; }
-  .hero-logo { width: 100px; margin-bottom: 1.6rem; }
-  .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.45em; margin-bottom: 1.75rem; }
-  .hero-title { font-size: 4.2rem; margin-bottom: 1.25rem; }
-  .hero-rule { width: 70px; margin: 1.25rem auto; }
-  @keyframes widen { from { opacity:0; width:0; } to { opacity:1; width:70px; } }
-  .hero-event { font-size: 1.2rem; margin-bottom: 2.5rem; }
-  /* Tablet — native rotor size larger */
-  .flipdown .rotor,
-  .flipdown .rotor-leaf-front,
-  .flipdown .rotor-leaf-rear,
-  .flipdown .rotor-top,
-  .flipdown .rotor-bottom {
-    width: 52px !important;
-    font-size: 2.6rem !important;
-  }
-  .flipdown .rotor,
-  .flipdown .rotor-leaf-front,
-  .flipdown .rotor-leaf-rear {
-    height: 84px !important;
-    line-height: 84px !important;
-  }
-  .flipdown .rotor-top,
-  .flipdown .rotor-bottom {
-    height: 42px !important;
-    line-height: 84px !important;
-  }
-  .flipdown .rotor-group { padding-right: 16px !important; }
-  .flipdown .rotor-group-heading { height: 28px !important; line-height: 28px !important; }
-  .flipdown .rotor-group-heading::before { font-size: 0.65rem !important; }
-  .hero-date { font-size: 1.1rem; letter-spacing: 0.15em; }
-  .scroll-hint { bottom: 2rem; }
-  .scroll-line { height: 40px; }
 
   .school-eyebrow { font-size: 0.65rem; }
   .school-name { font-size: 1.6rem; }
@@ -993,34 +848,38 @@ img { max-width: 100%; display: block; }
    DESKTOP  (>= 1100px)
    ============================================================ */
 @media (min-width: 1100px) {
-  .hero-logo { width: 120px; }
-  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.5em; }
-  .hero-title { font-size: 5.5rem; }
-  .hero-event { font-size: 1.4rem; }
-  /* Desktop — full FlipDown native sizing */
+  /* Switch to landscape poster image; FlipDown sits over the reserved zone in the left cream column. */
+  .hero {
+    aspect-ratio: 1672 / 941;
+    background-image: url("assets/hero-desktop.png");
+  }
+  .flipdown-slot {
+    top: 64%;
+    left: 15%;
+  }
+  /* Desktop rotor sizes — fluid scale to fit the reserved zone in the cream column */
   .flipdown .rotor,
   .flipdown .rotor-leaf-front,
   .flipdown .rotor-leaf-rear,
   .flipdown .rotor-top,
   .flipdown .rotor-bottom {
-    width: 60px !important;
-    font-size: 3rem !important;
+    width: clamp(28px, 2.2vw, 44px) !important;
+    font-size: clamp(1.6rem, 2.4vw, 2.6rem) !important;
   }
   .flipdown .rotor,
   .flipdown .rotor-leaf-front,
   .flipdown .rotor-leaf-rear {
-    height: 100px !important;
-    line-height: 100px !important;
+    height: clamp(46px, 3.5vw, 70px) !important;
+    line-height: clamp(46px, 3.5vw, 70px) !important;
   }
   .flipdown .rotor-top,
   .flipdown .rotor-bottom {
-    height: 50px !important;
-    line-height: 100px !important;
+    height: clamp(23px, 1.75vw, 35px) !important;
+    line-height: clamp(46px, 3.5vw, 70px) !important;
   }
-  .flipdown .rotor-group { padding-right: 30px !important; }
-  .flipdown .rotor-group-heading { height: 30px !important; line-height: 30px !important; }
-  .flipdown .rotor-group-heading::before { font-size: 0.7rem !important; }
-  .hero-date { font-size: 1.25rem; }
+  .flipdown .rotor-group { padding-right: clamp(5px, 0.55vw, 11px) !important; }
+  .flipdown .rotor-group-heading { height: 24px !important; line-height: 24px !important; }
+  .flipdown .rotor-group-heading::before { font-size: 0.6rem !important; }
 
   .bridge-text { font-size: 3.2rem; }
 
