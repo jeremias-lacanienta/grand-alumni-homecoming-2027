@@ -2,7 +2,18 @@
 const BATCHES = [
   { year: 1967, gem: "Diamond",     anniversary: "sixty years",  glow: "rgba(255,255,255,0.6)",  color: "#EAF6FF" },
   { year: 1972, gem: "Alexandrite", anniversary: "fifty-five",   glow: "rgba(120,180,140,0.5)",  color: "#7FB39A" },
-  { year: 1977, gem: "Gold",        anniversary: "fifty years",  glow: "rgba(212,160,23,0.7)",   color: "#D4A017", hero: "assets/batches/1977-gold.png", bg: "assets/batches/1977-bg.jpg" },
+  {
+    year: 1977, gem: "Gold", anniversary: "fifty years",
+    glow: "rgba(212,160,23,0.7)", color: "#D4A017",
+    hero: "assets/batches/1977-gold.png",
+    bg: "assets/batches/1977/photo-4-facade.jpg",
+    gallery: [
+      { src: "assets/batches/1977/photo-2-banner.jpg",      caption: "Reunion · Batch 1977" },
+      { src: "assets/batches/1977/photo-3-greenshirts.jpg", caption: "M.A.R. 77" },
+      { src: "assets/batches/1977/photo-5-christmas.jpg",   caption: "Christmas Gathering" },
+      { src: "assets/batches/1977/photo-1-table.jpg",       caption: "Together Again" },
+    ],
+  },
   { year: 1982, gem: "Sapphire",    anniversary: "forty-five",   glow: "rgba(60,100,200,0.6)",   color: "#3B5FBF" },
   { year: 1987, gem: "Ruby",        anniversary: "forty years",  glow: "rgba(200,40,60,0.7)",    color: "#C8203B" },
   { year: 1992, gem: "Jade",        anniversary: "thirty-five",  glow: "rgba(74,107,58,0.6)",    color: "#5A8A4B" },
@@ -249,6 +260,25 @@ BATCHES.forEach((b, i) => {
     </div>
   `;
   wrap.appendChild(section);
+
+  if (b.gallery && b.gallery.length) {
+    const gallery = document.createElement("section");
+    gallery.className = "batch-gallery";
+    const tilts = [-3.5, 2.2, -2, 3];
+    gallery.innerHTML = `
+      <div class="bg-eyebrow">${b.year} · ${b.gem}</div>
+      <h3 class="bg-title"><em>Memories</em> from the batch</h3>
+      <div class="bg-grid">
+        ${b.gallery.map((p, idx) => `
+          <figure class="polaroid" style="--rot: ${tilts[idx % tilts.length]}deg">
+            <img src="${p.src}" alt="${p.caption || ''}" loading="lazy" />
+            <figcaption>${p.caption || ''}</figcaption>
+          </figure>
+        `).join("")}
+      </div>
+    `;
+    wrap.appendChild(gallery);
+  }
 });
 
 // ============ YEAR STRIP (all alumni 1967–2012) ============
@@ -274,4 +304,4 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.35 });
 
-document.querySelectorAll(".batch, .bridge, .finale, .alumni-all").forEach(el => observer.observe(el));
+document.querySelectorAll(".batch, .bridge, .finale, .alumni-all, .batch-gallery").forEach(el => observer.observe(el));
