@@ -227,16 +227,19 @@ img { max-width: 100%; display: block; }
   animation: fadeUp 1.4s 1.5s forwards;
 }
 .flipdown {
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: flex-start !important;
+  display: block !important;
   margin: 0 auto !important;
-  width: auto !important;
+  width: max-content !important;
   max-width: none !important;
   height: auto !important;
   transform: none !important;
 }
-.flipdown .rotor-group { float: none !important; }
+.flipdown::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.flipdown .rotor-group { float: left !important; }
 .flipdown .rotor-group-heading::before {
   font-family: var(--sans) !important;
   font-weight: 600 !important;
@@ -244,26 +247,25 @@ img { max-width: 100%; display: block; }
   color: var(--maroon) !important;
 }
 
-/* Mobile-first physical rotor sizes — natural total ≈ 316px,
-   fits comfortably on a 360px phone. */
+/* Mobile-first physical rotor sizes — natural total ≈ 290px. */
 .flipdown .rotor,
 .flipdown .rotor-leaf-front,
 .flipdown .rotor-leaf-rear,
 .flipdown .rotor-top,
 .flipdown .rotor-bottom {
-  width: 38px !important;
-  font-size: 1.95rem !important;
+  width: 34px !important;
+  font-size: 1.75rem !important;
 }
 .flipdown .rotor,
 .flipdown .rotor-leaf-front,
 .flipdown .rotor-leaf-rear {
-  height: 60px !important;
-  line-height: 60px !important;
+  height: 54px !important;
+  line-height: 54px !important;
 }
 .flipdown .rotor-top,
 .flipdown .rotor-bottom {
-  height: 30px !important;
-  line-height: 60px !important;
+  height: 27px !important;
+  line-height: 54px !important;
 }
 .flipdown .rotor-group { padding-right: 6px !important; }
 .flipdown .rotor-group:last-child { padding-right: 0 !important; }
