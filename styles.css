@@ -185,6 +185,12 @@ img { max-width: 100%; display: block; }
 }
 .hero-title .line:nth-child(1) { animation-delay: 0.4s; }
 .hero-title .line:nth-child(2) { animation-delay: 0.6s; font-style: italic; color: var(--gold); font-weight: 400; }
+.hero-title .line-name {
+  font-size: 0.42em;
+  letter-spacing: 0.06em;
+  margin-top: 0.35em;
+  font-weight: 500;
+}
 
 .hero-rule {
   width: 60px;
