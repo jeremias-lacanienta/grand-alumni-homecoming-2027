@@ -579,27 +579,10 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- FINALE (poster image) ---------- */
-.finale {
-  position: relative;
-  width: 100%;
+img.finale {
   display: block;
-  overflow: hidden;
-  background: var(--cream) url("assets/finale.png") center / cover no-repeat;
-  aspect-ratio: 1672 / 941;
-  min-height: 0;
-}
-/* Text is part of the poster image — keep in DOM for SEO/screen readers, visually hidden. */
-.finale-line,
-.finale-meta {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  width: 100%;
+  height: auto;
 }
 
 /* ============================================================
