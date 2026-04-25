@@ -216,40 +216,61 @@ img { max-width: 100%; display: block; }
   padding: 0 0.5rem;
 }
 
-/* FlipDown override — keep horizontal, scale to fit, match palette.
-   transform: scale() keeps the natural bounding box, so the slot
-   wrapper compensates with a fixed visual height to remove the
-   empty space the scaled-down rotors leave below. */
+/* FlipDown — native sizing, centered.
+   Override default 580px width so it fits the viewport on phone
+   without transforms. Larger physical card sizes than the previous
+   transform-scaled version, fully readable. */
 .flipdown-slot {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 auto 1.25rem;
-  height: 75px;        /* visual height after scale 0.5 */
-  overflow: visible;
+  text-align: center;
+  margin: 0 auto 1.5rem;
   opacity: 0;
   animation: fadeUp 1.4s 1.5s forwards;
 }
 .flipdown {
-  display: block !important;
-  width: 580px !important;
-  min-width: 580px !important;
+  display: inline-block !important;
+  margin: 0 auto !important;
+  width: max-content !important;
   max-width: none !important;
   height: auto !important;
-  margin: 0 !important;
-  flex-shrink: 0 !important;
-  transform-origin: top center;
-  transform: scale(0.5);
+  transform: none !important;
 }
-.flipdown .rotor-group {
-  float: left !important;
-}
+.flipdown .rotor-group { float: left !important; }
 .flipdown .rotor-group-heading::before {
   font-family: var(--sans) !important;
   font-weight: 600 !important;
   letter-spacing: 0.18em !important;
   color: var(--maroon) !important;
 }
+
+/* Mobile-first physical rotor sizes — natural total ≈ 316px,
+   fits comfortably on a 360px phone. */
+.flipdown .rotor,
+.flipdown .rotor-leaf-front,
+.flipdown .rotor-leaf-rear,
+.flipdown .rotor-top,
+.flipdown .rotor-bottom {
+  width: 38px !important;
+  font-size: 1.95rem !important;
+}
+.flipdown .rotor,
+.flipdown .rotor-leaf-front,
+.flipdown .rotor-leaf-rear {
+  height: 60px !important;
+  line-height: 60px !important;
+}
+.flipdown .rotor-top,
+.flipdown .rotor-bottom {
+  height: 30px !important;
+  line-height: 60px !important;
+}
+.flipdown .rotor-group { padding-right: 6px !important; }
+.flipdown .rotor-group:last-child { padding-right: 0 !important; }
+.flipdown .rotor { margin: 0 1px !important; }
+.flipdown .rotor-group-heading {
+  height: 22px !important;
+  line-height: 22px !important;
+}
+.flipdown .rotor-group-heading::before { font-size: 0.55rem !important; }
 
 .hero-date {
   font-family: var(--serif);
@@ -855,8 +876,29 @@ img { max-width: 100%; display: block; }
   .hero-rule { width: 70px; margin: 1.25rem auto; }
   @keyframes widen { from { opacity:0; width:0; } to { opacity:1; width:70px; } }
   .hero-event { font-size: 1.2rem; margin-bottom: 2.5rem; }
-  .flipdown-slot { height: 115px; }
-  .flipdown { transform: scale(0.75) !important; }
+  /* Tablet — native rotor size larger */
+  .flipdown .rotor,
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-leaf-rear,
+  .flipdown .rotor-top,
+  .flipdown .rotor-bottom {
+    width: 52px !important;
+    font-size: 2.6rem !important;
+  }
+  .flipdown .rotor,
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-leaf-rear {
+    height: 84px !important;
+    line-height: 84px !important;
+  }
+  .flipdown .rotor-top,
+  .flipdown .rotor-bottom {
+    height: 42px !important;
+    line-height: 84px !important;
+  }
+  .flipdown .rotor-group { padding-right: 16px !important; }
+  .flipdown .rotor-group-heading { height: 28px !important; line-height: 28px !important; }
+  .flipdown .rotor-group-heading::before { font-size: 0.65rem !important; }
   .hero-date { font-size: 1.1rem; letter-spacing: 0.15em; }
   .scroll-hint { bottom: 2rem; }
   .scroll-line { height: 40px; }
@@ -951,8 +993,29 @@ img { max-width: 100%; display: block; }
   .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.5em; }
   .hero-title { font-size: 5.5rem; }
   .hero-event { font-size: 1.4rem; }
-  .flipdown-slot { height: 150px; }
-  .flipdown { transform: scale(1) !important; }
+  /* Desktop — full FlipDown native sizing */
+  .flipdown .rotor,
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-leaf-rear,
+  .flipdown .rotor-top,
+  .flipdown .rotor-bottom {
+    width: 60px !important;
+    font-size: 3rem !important;
+  }
+  .flipdown .rotor,
+  .flipdown .rotor-leaf-front,
+  .flipdown .rotor-leaf-rear {
+    height: 100px !important;
+    line-height: 100px !important;
+  }
+  .flipdown .rotor-top,
+  .flipdown .rotor-bottom {
+    height: 50px !important;
+    line-height: 100px !important;
+  }
+  .flipdown .rotor-group { padding-right: 30px !important; }
+  .flipdown .rotor-group-heading { height: 30px !important; line-height: 30px !important; }
+  .flipdown .rotor-group-heading::before { font-size: 0.7rem !important; }
   .hero-date { font-size: 1.25rem; }
 
   .bridge-text { font-size: 3.2rem; }
