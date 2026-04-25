@@ -292,4 +292,4 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.35 });
 
-document.querySelectorAll(".batch, .bridge, .finale, .alumni-all, .batch-gallery, .school").forEach(el => observer.observe(el));
+document.querySelectorAll(".batch, .bridge, .finale, .alumni-all, .batch-gallery").forEach(el => observer.observe(el));

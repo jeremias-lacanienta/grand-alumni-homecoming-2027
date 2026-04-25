@@ -55,69 +55,6 @@ img { max-width: 100%; display: block; }
   padding: 0;
 }
 
-/* ---------- SCHOOL SHOWCASE ---------- */
-.school {
-  position: relative;
-  height: var(--vh);
-  min-height: 480px;
-  overflow: hidden;
-  background: var(--cream-soft);
-}
-.school-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 1.6s ease, transform 6s ease-out;
-}
-.school.in-view .school-photo {
-  opacity: 1;
-  transform: scale(1);
-}
-.school-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(250,244,230,0) 65%, rgba(74,16,24,0.45) 100%);
-}
-.school-caption {
-  position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
-  bottom: 1.5rem;
-  text-align: center;
-  z-index: 1;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.2s 0.5s, transform 1.2s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.school.in-view .school-caption {
-  opacity: 1;
-  transform: translateY(0);
-}
-.school-eyebrow {
-  font-family: var(--sans);
-  font-size: 0.55rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--gold-pale);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 12px rgba(74,16,24,0.5);
-}
-.school-name {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--cream);
-  letter-spacing: 0.05em;
-  text-shadow: 0 2px 18px rgba(74,16,24,0.6);
-}
-
 /* All textual hero content is part of the poster image — keep in DOM
    for SEO/screen readers, but visually hidden. */
 .hero-content {
@@ -762,9 +699,6 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 @media (min-width: 760px) {
 
-  .school-eyebrow { font-size: 0.65rem; }
-  .school-name { font-size: 1.6rem; }
-  .school-caption { bottom: 2.5rem; }
 
   .bridge { padding: 5rem 2rem; }
   .bridge-text { font-size: 2.6rem; }
