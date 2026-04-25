@@ -43,68 +43,15 @@ img { max-width: 100%; display: block; }
    MOBILE FIRST  (default styles target ~360–480 phones)
    ============================================================ */
 
-/* ---------- HERO (split: photo band + content panel) ---------- */
+/* ---------- HERO ---------- */
 .hero {
   position: relative;
-  display: flex;
-  flex-direction: column;
   min-height: var(--vh);
-  overflow: hidden;
-}
-
-.hero-photo {
-  position: relative;
-  flex: 0 0 38vh;
-  min-height: 240px;
-  overflow: hidden;
-}
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  opacity: 0;
-  transform: scale(1.05);
-  animation: heroPhotoIn 1.8s 0.1s forwards, kenBurns 18s 1.8s ease-in-out infinite alternate;
-}
-@keyframes heroPhotoIn {
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes kenBurns {
-  to { transform: scale(1.06) translateY(-8px); }
-}
-.hero-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(74,16,24,0) 60%, rgba(74,16,24,0.55) 100%);
-  pointer-events: none;
-}
-.hero-photo-caption {
-  position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
-  bottom: 0.9rem;
-  text-align: center;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  color: var(--cream);
-  text-shadow: 0 2px 16px rgba(74,16,24,0.7);
-  opacity: 0;
-  animation: fadeUp 1.2s 0.8s forwards;
-  z-index: 1;
-}
-
-.hero-panel {
-  position: relative;
-  flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem 1.25rem 3.5rem;
   overflow: hidden;
+  padding: 5rem 1.25rem 4rem;
 }
 .hero-bg {
   position: absolute;
@@ -122,6 +69,75 @@ img { max-width: 100%; display: block; }
   mix-blend-mode: multiply;
   opacity: 0.5;
 }
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(232,194,106,0.35) 100%);
+  pointer-events: none;
+}
+
+/* ---------- SCHOOL SHOWCASE ---------- */
+.school {
+  position: relative;
+  height: var(--vh);
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--cream-soft);
+}
+.school-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.6s ease, transform 6s ease-out;
+}
+.school.in-view .school-photo {
+  opacity: 1;
+  transform: scale(1);
+}
+.school-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(250,244,230,0) 65%, rgba(74,16,24,0.45) 100%);
+}
+.school-caption {
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 1.5rem;
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s 0.5s, transform 1.2s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.school.in-view .school-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.school-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold-pale);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 12px rgba(74,16,24,0.5);
+}
+.school-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 18px rgba(74,16,24,0.6);
+}
 
 .hero-content {
   position: relative;
@@ -131,23 +147,23 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-logo {
-  width: 64px;
+  width: 78px;
   height: auto;
   border-radius: 50%;
-  margin: 0 auto 0.9rem;
-  filter: drop-shadow(0 4px 16px rgba(122,31,43,0.18)) drop-shadow(0 0 22px rgba(184,134,26,0.35));
+  margin: 0 auto 1.25rem;
+  filter: drop-shadow(0 6px 20px rgba(122,31,43,0.18)) drop-shadow(0 0 28px rgba(184,134,26,0.35));
   opacity: 0;
   animation: fadeUp 1.4s 0.1s forwards;
 }
 
 .hero-eyebrow {
   font-family: var(--sans);
-  font-size: 0.58rem;
-  letter-spacing: 0.3em;
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
   font-weight: 600;
   color: var(--maroon);
   text-transform: uppercase;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
   opacity: 0;
   animation: fadeUp 1.2s 0.2s forwards;
   padding: 0 0.5rem;
@@ -156,10 +172,10 @@ img { max-width: 100%; display: block; }
 .hero-title {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: 2.1rem;
+  font-size: 2.6rem;
   line-height: 1.02;
   color: var(--maroon-deep);
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 .hero-title .line {
   display: block;
@@ -171,24 +187,24 @@ img { max-width: 100%; display: block; }
 .hero-title .line:nth-child(2) { animation-delay: 0.6s; font-style: italic; color: var(--gold); font-weight: 400; }
 
 .hero-rule {
-  width: 50px;
+  width: 60px;
   height: 1px;
   background: var(--gold);
-  margin: 0.6rem auto;
+  margin: 1rem auto;
   opacity: 0;
   animation: widen 1.2s 1s forwards;
 }
 @keyframes widen {
   from { opacity: 0; width: 0; }
-  to   { opacity: 1; width: 50px; }
+  to   { opacity: 1; width: 60px; }
 }
 
 .hero-event {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--maroon);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
   opacity: 0;
   animation: fadeUp 1.2s 1.2s forwards;
   padding: 0 0.5rem;
@@ -198,9 +214,9 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
-  gap: 0.4rem;
-  margin: 0 auto 1rem;
-  max-width: 340px;
+  gap: 0.5rem;
+  margin: 0 auto 1.5rem;
+  max-width: 360px;
   opacity: 0;
   animation: fadeUp 1.4s 1.5s forwards;
 }
@@ -211,8 +227,8 @@ img { max-width: 100%; display: block; }
 }
 .cd-num {
   font-family: var(--serif);
-  font-weight: 500;
-  font-size: 1.7rem;
+  font-weight: 400;
+  font-size: 2rem;
   color: var(--maroon-deep);
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -238,13 +254,13 @@ img { max-width: 100%; display: block; }
 
 .scroll-hint {
   position: absolute;
-  bottom: 0.9rem;
+  bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
   opacity: 0;
   animation: fadeIn 1s 2.5s forwards;
 }
@@ -714,13 +730,28 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   padding: 4rem 1.25rem;
 }
+.finale-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.8s ease, transform 8s ease-out;
+  z-index: 0;
+}
+.finale.in-view .finale-photo {
+  opacity: 1;
+  transform: scale(1);
+}
 .finale-bg {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse at center, rgba(232,194,106,0.55) 0%, transparent 55%),
-    radial-gradient(ellipse at 20% 80%, rgba(241,215,206,0.5), transparent 60%),
-    linear-gradient(180deg, #FAF4E6 0%, #EFD7B5 50%, #E8C28A 100%);
+    radial-gradient(ellipse at center, rgba(250,244,230,0.85) 0%, rgba(250,244,230,0.55) 35%, rgba(232,194,106,0.55) 70%, rgba(184,134,26,0.4) 100%),
+    linear-gradient(180deg, rgba(250,244,230,0.4) 0%, rgba(232,194,106,0.45) 100%);
 }
 .finale-bg::after {
   content: "";
@@ -804,36 +835,23 @@ img { max-width: 100%; display: block; }
    TABLET  (>= 760px)
    ============================================================ */
 @media (min-width: 760px) {
-  /* Hero becomes side-by-side: photo left, content right */
-  .hero { flex-direction: row; }
-  .hero-photo {
-    flex: 1 1 50%;
-    min-height: var(--vh);
-    height: var(--vh);
-  }
-  .hero-photo::after {
-    background: linear-gradient(90deg, rgba(74,16,24,0) 65%, rgba(74,16,24,0.45) 100%);
-  }
-  .hero-photo-caption {
-    bottom: 1.5rem;
-    font-size: 0.95rem;
-  }
-  .hero-panel {
-    flex: 1 1 50%;
-    padding: 4rem 2rem;
-  }
-  .hero-logo { width: 96px; margin-bottom: 1.4rem; }
-  .hero-eyebrow { font-size: 0.66rem; letter-spacing: 0.4em; margin-bottom: 1.4rem; }
-  .hero-title { font-size: 3.6rem; margin-bottom: 1rem; }
-  .hero-rule { width: 60px; margin: 1rem auto; }
-  @keyframes widen { from { opacity:0; width:0; } to { opacity:1; width:60px; } }
-  .hero-event { font-size: 1.1rem; margin-bottom: 2rem; }
-  .countdown { gap: 1.5rem; max-width: 520px; }
-  .cd-num { font-size: 2.8rem; }
+  .hero { padding: 4rem 2rem; }
+  .hero-logo { width: 100px; margin-bottom: 1.6rem; }
+  .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.45em; margin-bottom: 1.75rem; }
+  .hero-title { font-size: 4.2rem; margin-bottom: 1.25rem; }
+  .hero-rule { width: 70px; margin: 1.25rem auto; }
+  @keyframes widen { from { opacity:0; width:0; } to { opacity:1; width:70px; } }
+  .hero-event { font-size: 1.2rem; margin-bottom: 2.5rem; }
+  .countdown { gap: 2rem; max-width: 600px; }
+  .cd-num { font-size: 3.2rem; }
   .cd-lbl { font-size: 0.62rem; letter-spacing: 0.35em; }
-  .hero-date { font-size: 1.05rem; letter-spacing: 0.15em; }
+  .hero-date { font-size: 1.1rem; letter-spacing: 0.15em; }
   .scroll-hint { bottom: 2rem; }
   .scroll-line { height: 40px; }
+
+  .school-eyebrow { font-size: 0.65rem; }
+  .school-name { font-size: 1.6rem; }
+  .school-caption { bottom: 2.5rem; }
 
   .bridge { padding: 5rem 2rem; }
   .bridge-text { font-size: 2.6rem; }
@@ -923,16 +941,14 @@ img { max-width: 100%; display: block; }
    DESKTOP  (>= 1100px)
    ============================================================ */
 @media (min-width: 1100px) {
-  .hero-photo-caption { font-size: 1.05rem; bottom: 2rem; }
-  .hero-panel { padding: 5rem 3rem; }
-  .hero-logo { width: 110px; margin-bottom: 1.6rem; }
-  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.45em; margin-bottom: 1.6rem; }
-  .hero-title { font-size: 4.6rem; }
-  .hero-event { font-size: 1.25rem; }
-  .countdown { gap: 2rem; }
-  .cd-num { font-size: 3.4rem; }
+  .hero-logo { width: 120px; }
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.5em; }
+  .hero-title { font-size: 5.5rem; }
+  .hero-event { font-size: 1.4rem; }
+  .countdown { gap: 3rem; }
+  .cd-num { font-size: 4rem; }
   .cd-lbl { font-size: 0.65rem; letter-spacing: 0.4em; }
-  .hero-date { font-size: 1.15rem; }
+  .hero-date { font-size: 1.25rem; }
 
   .bridge-text { font-size: 3.2rem; }
 
