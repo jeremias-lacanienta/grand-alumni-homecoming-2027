@@ -338,11 +338,12 @@ img { max-width: 100%; display: block; }
 
 .batch.polished .batch-gem {
   position: absolute;
-  top: 18%;
+  top: auto;
+  bottom: 12.5rem;            /* sits just above .batch-info */
   left: 50%;
   transform: translateX(-50%);
-  width: min(58vw, 240px);
-  height: min(58vw, 240px);
+  width: min(34vw, 130px);
+  height: min(34vw, 130px);
   z-index: 2;
 }
 .batch.polished .batch-gem .batch-photo {
@@ -636,6 +637,7 @@ img { max-width: 100%; display: block; }
   .polaroid { max-width: 360px; }
   .batch.polished .batch-gem {
     top: 50%;
+    bottom: auto;
     left: auto;
     right: 5vw;
     transform: translateY(-50%);
