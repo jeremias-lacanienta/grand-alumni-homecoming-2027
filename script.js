@@ -14,9 +14,33 @@ const BATCHES = [
       { src: "assets/batches/1977/photo-1-table.jpg",       caption: "Together Again" },
     ],
   },
-  { year: 1982, gem: "Sapphire",    anniversary: "forty-five",   glow: "rgba(60,100,200,0.6)",   color: "#3B5FBF" },
-  { year: 1987, gem: "Ruby",        anniversary: "forty years",  glow: "rgba(200,40,60,0.7)",    color: "#C8203B" },
-  { year: 1992, gem: "Jade",        anniversary: "thirty-five",  glow: "rgba(74,107,58,0.6)",    color: "#5A8A4B" },
+  {
+    year: 1982, gem: "Sapphire", anniversary: "forty-five",
+    glow: "rgba(60,100,200,0.6)", color: "#3B5FBF",
+    gallery: [
+      { src: "assets/batches/1982/0.jpg", caption: "MARHS · Batch '82" },
+      { src: "assets/batches/1982/1.jpg", caption: "Swimming · 2025" },
+      { src: "assets/batches/1982/2.jpg", caption: "Forever Sooners" },
+      { src: "assets/batches/1982/3.jpg", caption: "Together Again" },
+      { src: "assets/batches/1982/4.jpg", caption: "Catching Up" },
+    ],
+  },
+  {
+    year: 1987, gem: "Ruby", anniversary: "forty years",
+    glow: "rgba(200,40,60,0.7)", color: "#C8203B",
+    gallery: [
+      { src: "assets/batches/1987/0.jpg", caption: "Reunion · Batch '87" },
+      { src: "assets/batches/1987/1.jpg", caption: "MARHS '87" },
+      { src: "assets/batches/1987/2.jpg", caption: "Together Again" },
+    ],
+  },
+  {
+    year: 1992, gem: "Jade", anniversary: "thirty-five",
+    glow: "rgba(74,107,58,0.6)", color: "#5A8A4B",
+    gallery: [
+      { src: "assets/batches/1992/0.jpg", caption: "Forever MARHS · Batch '92" },
+    ],
+  },
   { year: 1997, gem: "Pearl",       anniversary: "thirty years", glow: "rgba(245,237,216,0.7)",  color: "#F5EDD8" },
   { year: 2002, gem: "Silver",      anniversary: "twenty-five",  glow: "rgba(220,220,230,0.6)",  color: "#D8DCE2" },
   { year: 2007, gem: "Emerald",     anniversary: "twenty years", glow: "rgba(40,140,90,0.7)",    color: "#2E9D6B" },
