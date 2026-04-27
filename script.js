@@ -17,7 +17,6 @@ const BATCHES = [
   {
     year: 1982, gem: "Sapphire", anniversary: "forty-five",
     glow: "rgba(60,100,200,0.6)", color: "#3B5FBF",
-    hero: "assets/batches/1982/0.jpg",
     bg: "assets/batches/1982/0.jpg",
     gallery: [
       { src: "assets/batches/1982/1.jpg", caption: "Swimming · 2025" },
@@ -29,7 +28,6 @@ const BATCHES = [
   {
     year: 1987, gem: "Ruby", anniversary: "forty years",
     glow: "rgba(200,40,60,0.7)", color: "#C8203B",
-    hero: "assets/batches/1987/0.jpg",
     bg: "assets/batches/1987/0.jpg",
     gallery: [
       { src: "assets/batches/1987/1.jpg", caption: "MARHS '87" },
@@ -39,7 +37,6 @@ const BATCHES = [
   {
     year: 1992, gem: "Jade", anniversary: "thirty-five",
     glow: "rgba(74,107,58,0.6)", color: "#5A8A4B",
-    hero: "assets/batches/1992/0.jpg",
     bg: "assets/batches/1992/0.jpg",
   },
   { year: 1997, gem: "Pearl",       anniversary: "thirty years", glow: "rgba(245,237,216,0.7)",  color: "#F5EDD8" },
@@ -246,14 +243,21 @@ const wrap = document.getElementById("batches");
 
 BATCHES.forEach((b, i) => {
   const section = document.createElement("section");
-  const polished = !!b.hero;
+  const polished = !!b.hero || !!b.bg;
   section.className = "batch" + (polished ? " polished" : "");
   section.style.setProperty("--glow", b.glow);
   section.dataset.idx = i;
 
-  const gemMarkup = polished
-    ? `<img class="batch-photo" src="${b.hero}" alt="${b.gem}" />`
-    : gemSVG[b.gem](b.color);
+  // Centered "gem" element: hero photo if provided, SVG gem otherwise.
+  // When the batch is polished via bg only, skip the gem (the bg photo
+  // already fills the section — a duplicate would float on top of it).
+  let gemMarkup = "";
+  if (b.hero) {
+    gemMarkup = `<img class="batch-photo" src="${b.hero}" alt="${b.gem}" />`;
+  } else if (!polished) {
+    gemMarkup = gemSVG[b.gem](b.color);
+  }
+  const gemSection = gemMarkup ? `<div class="batch-gem">${gemMarkup}</div>` : "";
 
   const bgMarkup = b.bg
     ? `<div class="batch-bg" style="background-image:url('${b.bg}')"></div>`
@@ -263,7 +267,7 @@ BATCHES.forEach((b, i) => {
     <div class="batch-sticky">
       ${bgMarkup}
       <div class="batch-num">No. ${pad(i + 1)} of ${pad(BATCHES.length)}</div>
-      <div class="batch-gem">${gemMarkup}</div>
+      ${gemSection}
       <div class="batch-info">
         <div class="batch-year">${b.year}</div>
         <div class="batch-divider"></div>
