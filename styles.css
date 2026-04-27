@@ -339,11 +339,11 @@ img { max-width: 100%; display: block; }
 .batch.polished .batch-gem {
   position: absolute;
   top: auto;
-  bottom: 12.5rem;            /* sits just above .batch-info */
+  bottom: 10rem;              /* sits directly on top of the year */
   left: 50%;
   transform: translateX(-50%);
-  width: min(34vw, 130px);
-  height: min(34vw, 130px);
+  width: min(36vw, 140px);
+  height: min(36vw, 140px);
   z-index: 2;
 }
 .batch.polished .batch-gem .batch-photo {
