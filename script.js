@@ -17,6 +17,7 @@ const BATCHES = [
   {
     year: 1982, gem: "Sapphire", anniversary: "forty-five",
     glow: "rgba(60,100,200,0.6)", color: "#3B5FBF",
+    hero: "assets/batches/1982-sapphire.png",
     bg: "assets/batches/1982/0.jpg",
     gallery: [
       { src: "assets/batches/1982/1.jpg", caption: "Swimming · 2025" },
