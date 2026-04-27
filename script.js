@@ -28,6 +28,7 @@ const BATCHES = [
   {
     year: 1987, gem: "Ruby", anniversary: "forty years",
     glow: "rgba(200,40,60,0.7)", color: "#C8203B",
+    hero: "assets/batches/1987-ruby.png",
     bg: "assets/batches/1987/0.jpg",
     gallery: [
       { src: "assets/batches/1987/1.jpg", caption: "MARHS '87" },
@@ -37,6 +38,7 @@ const BATCHES = [
   {
     year: 1992, gem: "Jade", anniversary: "thirty-five",
     glow: "rgba(74,107,58,0.6)", color: "#5A8A4B",
+    hero: "assets/batches/1992-jade.png",
     bg: "assets/batches/1992/0.jpg",
   },
   { year: 1997, gem: "Pearl",       anniversary: "thirty years", glow: "rgba(245,237,216,0.7)",  color: "#F5EDD8" },
